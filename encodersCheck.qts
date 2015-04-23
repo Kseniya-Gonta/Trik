@@ -1,0 +1,50 @@
+var __interpretation_started_timestamp__;
+var pi = 3.14159265;
+var step = 5;
+var init = -100;
+var arr = new Array()
+var i = 0;
+var e3 =  brick.encoder(B3);
+var e4 =  brick.encoder(B4);
+
+function piecewiseDown(initial) {
+	if (initial > 0) { (initial = (-1) * initial) } else (initial = (-1) * initial - step);
+	brick.display().addLabel('@' + initial, 1, 1);
+	return initial;
+}
+function piecewiseUp(initial) {
+	if (initial > 0) { (initial = (-1) * initial) } else (initial = (-1) * initial + step);
+	brick.display().addLabel('@' + initial, 1, 1);
+	return initial;
+}
+
+function smoothlyDown(initial) {
+	return (initial - step);
+	}
+
+function smoothlyUp(initial){
+	return (initial + step);
+}
+
+var main = function()
+{
+	__interpretation_started_timestamp__ = Date.now();
+while (init != 105) {
+	
+	e3.reset();
+	e4.reset();
+	brick.motor(M3).setPower(init );
+	brick.motor(M4).setPower(init );
+	script.wait(5000);
+	//brick.display().addLabel(init + '@' + e3.readRawData() , 1, 1);
+	//brick.display().addLabel(init +'time' + brick.encoder(B3).readRawData() +'Ha ' + brick.encoder(B4).readRawData(), 1 , 1);
+	//arr[i] =  brick.encoder(B3).readRawData() +' ' + e4.readRawData();
+//	script.wait(5000);
+//	brick.display().addLabel(arr, 1, 1);
+//	script.wait(5000);
+	print(e3.readRawData(), ',', e4.readRawData());
+	init = smoothlyUp(init);
+}
+	//print(1,',',1);
+
+}
