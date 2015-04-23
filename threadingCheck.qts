@@ -1,0 +1,35 @@
+var __interpretation_started_timestamp__;
+var pi = 3.14159265;
+
+/* Threads declarations */
+var TASK_d59660250e674f23abc6493e5b07001d;
+
+/* Threads */
+TASK_d59660250e674f23abc6493e5b07001d = function()
+{
+	//print(1);
+	//brick.smile();
+	print(1);
+	print(3);
+	print(5);
+	print(7);
+	print(9);
+	script.wait(1000);
+	
+	return;
+}
+
+var main = function()
+{
+	__interpretation_started_timestamp__ = Date.now();
+
+	Threading.start("TASK_d59660250e674f23abc6493e5b07001d");
+	
+	print(2);
+	print(4);
+	print(6);
+	print(8);
+	print(10);
+	script.wait(1000);
+	return;
+}
