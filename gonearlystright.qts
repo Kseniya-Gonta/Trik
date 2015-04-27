@@ -10,17 +10,17 @@ var main = function()
 	//brick.motor(M4).setPower(60);
 	//script.system("i2cset -y 2 0x48 0x10 1000 w")
 	script.wait(300);
-	for ( var i = 20; i < 100; i++) {
+	for ( var i = 20; i <100; i++) {
 	brick.encoder(B3).reset();
 	brick.encoder(B4).reset();
 	brick.motor(M3).setPower(i);
 	script.wait(1000);
-	p = brick.motor(M3).power;
-	diff = -(brick.encoder(B4).readRawData() - brick.encoder(B3).readRawData()) /100;
+	p = brick.motor(M3).power();
+	diff = (e4.readRawData() + e3.readRawData()) /10;
 	m = i+diff;
 	brick.motor(M4).setPower(i+diff);
-	print (i, ',', m);
-	script.wait(500);
+	print (diff);
+	script.wait(20);
 	}
 	return;
 }
