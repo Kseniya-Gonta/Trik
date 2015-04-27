@@ -1,0 +1,26 @@
+var __interpretation_started_timestamp__;
+var pi = 3.14159265;
+var e3 =  brick.encoder(B3);
+var e4 =  brick.encoder(B4);
+
+var main = function()
+{
+	__interpretation_started_timestamp__ = Date.now();
+	//brick.motor(M3).setPower(60);
+	//brick.motor(M4).setPower(60);
+	//script.system("i2cset -y 2 0x48 0x10 1000 w")
+	script.wait(300);
+	for ( var i = 20; i < 100; i++) {
+	brick.encoder(B3).reset();
+	brick.encoder(B4).reset();
+	brick.motor(M3).setPower(i);
+	script.wait(1000);
+	p = brick.motor(M3).power;
+	diff = -(brick.encoder(B4).readRawData() - brick.encoder(B3).readRawData()) /100;
+	m = i+diff;
+	brick.motor(M4).setPower(i+diff);
+	print (i, ',', m);
+	script.wait(500);
+	}
+	return;
+}
