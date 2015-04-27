@@ -1,0 +1,45 @@
+var __interpretation_started_timestamp__;
+var pi = 3.14159265;
+var e3 =  brick.encoder(B3);
+var e4 =  brick.encoder(B4);
+var init = 50
+;
+/* Threads declarations */
+var first;
+
+/* Threads */
+first = function()
+{
+	//script.wait(300);
+	//for ( var i = 20; i <100; i++) {
+	while(1){
+	//brick.encoder(B3).reset();
+	//brick.encoder(B4).reset();
+	//brick.motor(M3).setPower(i);
+	//script.wait(1000);
+	p = brick.motor(M3).power();
+	diff = (e4.readRawData() + e3.readRawData()) ;
+	//m = i+diff;
+	brick.motor(M4).setPower(p+diff);
+	//print (diff);
+	script.wait(20);
+	}
+	return;
+}
+
+var main = function()
+{
+	__interpretation_started_timestamp__ = Date.now();
+
+	Threading.start("first");
+	brick.encoder(B3).reset();
+	brick.encoder(B4).reset();
+	while (init <105) {
+	brick.motor(M3).setPower(init);
+	script.wait(5000);
+	print(e3.readRawData(), ',', e4.readRawData());
+	init = init + 5;
+	//print(init);
+	}
+	return;
+}
