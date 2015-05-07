@@ -2,6 +2,21 @@ scp /Users/ksenya/trikClone/trikRuntime/trikControl/script1.sh   root@10.0.40.12
 
 
 
+
+var motorNums = {"0x10"; ..} 
+    var freqDiv;
+	for (freqDiv = ...;freqDiv <= ...; freqDiv *= 1.2)
+    {
+        var command = "i2cset -y 2 0x48 0x10 0x" + freqDiv.toString(16) + " w";
+        print(command);          
+        script.system(command);
+        script.wait(2000);
+        .....
+    }
+
+
+
+
 #!/bin/bash
 for i in {1..10}
 do
