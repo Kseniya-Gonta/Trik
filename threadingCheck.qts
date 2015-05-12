@@ -1,3 +1,5 @@
+// училась работать с потоками.
+
 var __interpretation_started_timestamp__;
 var pi = 3.14159265;
 
